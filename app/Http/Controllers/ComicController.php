@@ -16,6 +16,7 @@ class ComicController extends Controller
     {
         $comics = Comic::orderByDesc('id')->get();
         // dd($comics);
+        // dd(Comic::find($id));
         return view('comics.index', compact('comics'));
     }
 
@@ -37,7 +38,13 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        // dd($request->all(), $request->title);
+        // return $request->all();
+        $data = $request->all();
+        // $data['price'] = floatval(str_replace(',','.',$data['price']));
+        Comic::create($data);
+        return redirect()->route('comics.index');
     }
 
     /**

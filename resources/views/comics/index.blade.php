@@ -19,7 +19,7 @@
                         </div>
                         <div class="card-body">
                             <h5 class="card-title">{{ $comic->title }}</h5>
-                            <a href="{{route('comics.show')}}" class="btn btn-primary">Show more</a>
+                            <a href="{{route('comics.show', $comic->id)}}" class="btn btn-primary">Show more</a>
                         </div>
                     </div>
                 </div>
