@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Comic;
+use App\Http\Requests\ComicRequest; 
 use Illuminate\Http\Request;
 
 class ComicController extends Controller
@@ -15,8 +16,7 @@ class ComicController extends Controller
     public function index()
     {
         $comics = Comic::orderByDesc('id')->get();
-        // dd($comics);
-        // dd(Comic::find($id));
+    
         return view('comics.index', compact('comics'));
     }
 
@@ -33,17 +33,25 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \App\Http\Requests\ComicRequest;   $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ComicRequest $request)
     {
 
-        // dd($request->all(), $request->title);
-        // return $request->all();
-        $data = $request->all();
-        // $data['price'] = floatval(str_replace(',','.',$data['price']));
-        Comic::create($data);
+        // Validate i dati inseriti
+        // $validate_data = $request->validate([
+        //     'title' => 'required|min:3|max:255',
+        //     'description' => 'required|min:3|max:255',
+        //     'thumb' => 'required|min:3|max:255',
+        //     'price' => 'required|min:3|max:255',
+        //     'series' => 'required|min:3|max:255',
+        //     'sale_date' => 'required|min:3|max:255',
+        //     'type' => 'nullable|min:3|max:255',
+        //     ]);
+       
+        $validated = $request->validated();
+        Comic::create($validated);
         return redirect()->route('comics.index');
     }
 
@@ -66,19 +74,41 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+        return view('comics.edit', compact('comic'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\ComicRequest  $request
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(ComicRequest $request, Comic $comic)
     {
-        //
+
+        // dd($request->all());
+        // $data = $request->all();
+
+
+        // $validate_data = $request->validate([
+        //     'title' => 'required|min:3|max:255',
+        //     'description' => 'required|min:3|max:255',
+        //     'thumb' => 'required|min:3|max:255',
+        //     'price' => 'required|min:3|max:255',
+        //     'series' => 'required|min:3|max:255',
+        //     'sale_date' => 'required|min:3|max:255',
+        //     'type' => 'nullable|min:3|max:255',
+        //     ]);
+            
+        // $comic->update($validate_data);
+        
+        //validare i dari
+        $validated = $request->validated();
+
+        $comic->update($validated);
+
+        return redirect()->route('comics.index');
     }
 
     /**
@@ -89,6 +119,7 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }
