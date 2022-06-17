@@ -6,7 +6,7 @@
 
 <div class="container-fluid">
     <div class="container text-centerq">
-        <div class="text">
+        <div class="text-center">
             <h2>
                 Trova il fumetto che fa per te tra milioni di fumetti vari!! <br>
             </h2>

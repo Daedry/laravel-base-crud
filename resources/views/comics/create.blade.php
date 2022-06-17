@@ -28,32 +28,50 @@
 
         <div class="form-group pt-3">
             <label for="description">Description</label>
-            <input type="text" name="description" id="description" class="form-control" placeholder="description" aria-describedby="descriptionHelper">
+            <input type="text" name="description" id="description" class="form-control" placeholder="description" aria-describedby="descriptionHelper" class="@error('description') is-invalid @enderror" value="{{old('description')}}">
+            @error('description')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group pt-3">
             <label for="thumb">Thumbnail</label>
-            <input type="text" name="thumb" id="thumb" class="form-control" placeholder="https://myimage.png" aria-describedby="thumbHelper">
+            <input type="text" name="thumb" id="thumb" class="form-control" placeholder="https://myimage.png" aria-describedby="thumbHelper" class="@error('thumb') is-invalid @enderror" value="{{old('thumb')}}">
+            @error('thumb')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group pt-3">
             <label for="price">Price</label>
-            <input type="text" name="price" id="price" class="form-control" placeholder="29.,99£" aria-describedby="thumbHelper">
+            <input type="text" name="price" id="price" class="form-control" placeholder="29.,99£" aria-describedby="priceHelper" class="@error('price') is-invalid @enderror" value="{{old('price')}}">
+            @error('price')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group pt-3">
             <label for="series">Series</label>
-            <input type="text" name="series" id="series" class="form-control" placeholder="Batman: The Joker War Zone" aria-describedby="seriesHelper">
+            <input type="text" name="series" id="series" class="form-control" placeholder="Batman: The Joker War Zone" aria-describedby="seriesHelper" class="@error('series') is-invalid @enderror" value="{{old('series')}}">
+            @error('series')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group pt-3">
             <label for="sale_date">Sale date</label>
-            <input type="text" name="sale_date" id="sale_date" class="form-control" placeholder="2020-09-29" aria-describedby="saleDateHelper">
+            <input type="text" name="sale_date" id="sale_date" class="form-control" placeholder="2020-09-29" aria-describedby="saleDateHelper" class="@error('sale_date') is-invalid @enderror" value="{{old('sale_date')}}">
+            @error('sale_date')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group py-3">
             <label for="type">Type</label>
-            <input type="text" name="type" id="type" class="form-control" placeholder="comic book" aria-describedby="typeHelper">
+            <input type="text" name="type" id="type" class="form-control" placeholder="comic book" aria-describedby="typeHelper" class="@error('type') is-invalid @enderror" value="{{old('type')}}">
+            @error('type')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <button type="submit" class="btn btn-primary">Add Comic</button>
