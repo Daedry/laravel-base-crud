@@ -8,9 +8,22 @@
     <form action="{{route('comics.store')}}" method="post">
         @csrf
 
+        @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
         <div class="form-group">
             <label for="title">Title</label>
-            <input type="text" name="title" id="title" class="form-control" placeholder="Batman" aria-describedby="titleHelper">
+            <input type="text" name="title" id="title" class="form-control" placeholder="Batman" aria-describedby="titleHelper" class="@error('title') is-invalid @enderror" value="{{old('title')}}">
+            @error('title')
+            <div class="alert alert-danger">{{ $message }}</div>
+            @enderror
         </div>
 
         <div class="form-group pt-3">

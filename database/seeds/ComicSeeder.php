@@ -25,5 +25,8 @@ class ComicSeeder extends Seeder
             $new_comic->type = $comic['type'];
             $new_comic->save();
         }
+
+        // php artisan db:seed --class=ComicSeeder  per mandare i dati a mysql
+        // php artisan route:list per vedere la lista delle rotte
     }
 }
